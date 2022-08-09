@@ -19,7 +19,7 @@ simData = simphony(featureGroups, nFeatures = 200, interval = 2, nReps = 1, fami
 kable(simData$abundData[1:3, 1:3])
 
 ## -----------------------------------------------------------------------------
-kable(simData$sampleMetadata[1:3,])
+kable(simData$sampleMetadata[1:3])
 
 ## -----------------------------------------------------------------------------
 kable(simData$featureMetadata[149:151, !'dispFunc']) %>%
@@ -61,7 +61,7 @@ rhyLimma = merge(data.table(rhyLimma), simData$featureMetadata[, .(feature, amp0
 ## ---- fig.width = 3.5, fig.height = 3-----------------------------------------
 ggplot(rhyLimma) +
   geom_jitter(aes(x = factor(amp0), y = P.Value), shape = 21, width = 0.2) +
-  labs(x = expression('Rhythm amplitude '*(log[2]~counts)), y = 'P-value of rhythmicity')
+  labs(x = expression('Rhythm amplitude ' * (log[2] ~ counts)), y = 'P-value of rhythmicity')
 
 ## ---- fig.width = 3, fig.height = 3-------------------------------------------
 rocprc = evalmod(scores = -log(rhyLimma$P.Value), labels = rhyLimma$amp0 > 0)
